@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Hồ sơ giáo viên</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="./css/teacher.css">
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <div class="card profile-card">
+
+      <div class="page-title">Hồ sơ giáo viên</div>
+          
+      <div id="msg" class="msg"></div>
+
+      <!-- AVATAR -->
+      <div class="avatar-box">
+        <img id="avatarPreview" alt="Avatar">
+        <input type="file" id="avatarFile" accept="image/*">
+        <div class="avatar-actions">
+          <button type="button" class="btn-secondary" onclick="removeAvatar()">Xóa ảnh</button>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Tên đăng ký</label>
+          <input id="username" readonly>
+        </div>
+
+        <div class="form-group">
+          <label>Họ và tên</label>
+          <input id="ho_ten">
+        </div>
+
+        <div class="form-group">
+          <label>Giới tính</label>
+          <select id="gioi_tinh">
+            <option value="">-- chọn --</option>
+            <option value="nam">Nam</option>
+            <option value="nu">Nữ</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Ngày sinh</label>
+          <input type="date" id="ngay_sinh">
+        </div>
+
+        <div class="form-group">
+          <label>Điện thoại</label>
+          <input id="dien_thoai">
+        </div>
+
+        <div class="form-group">
+          <label>Gmail</label>
+          <input id="gmail">
+        </div>
+
+        <div class="form-group">
+          <label>Facebook</label>
+          <input id="facebook">
+        </div>
+
+        <div class="form-group">
+          <label>Zalo</label>
+          <input id="zalo">
+        </div>
+
+        <div class="form-group">
+          <label>Nơi công tác</label>
+          <input id="noi_cong_tac">
+        </div>
+
+        <div class="form-group">
+          <label>Học hàm</label>
+          <select id="hoc_ham"></select>
+        </div>
+
+        <div class="form-group">
+          <label>Chuyên môn</label>
+          <select id="chuyen_mon"></select>
+        </div>
+
+        <div class="form-group full">
+          <label>Môn đăng ký dạy</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" value="tieng_anh"> Tiếng Anh</label>
+            <label><input type="checkbox" value="ngu_van"> Ngữ văn</label>
+            <label><input type="checkbox" value="tu_nhien"> Tự nhiên (Toán/Lý/Hóa)</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Hình thức dạy</label>
+          <select id="hinh_thuc">
+            <option value="">-- chọn --</option>
+            <option value="tructiep">Trực tiếp</option>
+            <option value="tructuyen">Trực tuyến</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="actions">
+        
+
+<button id="btnRegister" class="btn-primary" onclick="register()">Đăng ký</button>
+<button id="btnUpdate" class="btn-secondary" onclick="updateProfile()">Cập nhật</button>
+
+        <button class="btn-secondary" onclick="goHome()">Home</button>
+	<button class="btn-secondary" onclick="gopage()">My page</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="module" src="hosogiaovien.js"></script>
+</body>
+</html>

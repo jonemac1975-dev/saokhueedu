@@ -1,0 +1,47 @@
+
+<link rel="stylesheet" href="/pages/student/css/student.css">
+
+<section class="kiemtra-wrap">
+
+  <!-- ===== HEADER ===== -->
+  <div class="kt-head">
+    <h2>KIỂM TRA</h2>
+
+    <div class="kt-meta">
+      <div>Ngày: <span id="ktNgay">--/--/----</span></div>
+      <div>Số câu đúng: <span id="ktDung">0</span></div>
+      <div>Số điểm: <span id="ktDiem">0</span></div>
+      <div class="kt-timer" id="ktTimer">00:00</div>
+    </div>
+  </div>
+
+  <!-- ===== THÔNG TIN ===== -->
+  <div class="kt-info">
+    <div>Tên học viên: <b id="ktHocVien"></b></div>
+    <div>Giáo viên   : <b id="ktGiaoVien"></b></div>
+  </div>
+
+  <!-- ===== CHỌN DANH MỤC ===== -->
+  <div class="kt-select">
+    <label>Kỳ kiểm tra</label>
+    <select id="selKyThi"></select>
+
+    <label>Lớp</label>
+    <select id="selLop"></select>
+
+    <label>Bài kiểm tra</label>
+    <select id="selBaiKT"></select>
+  </div>
+
+  <!-- ===== NỘI DUNG ===== -->
+  <div id="ktNoiDung" class="kt-noidung">
+    <!-- câu hỏi trắc nghiệm sinh ở đây -->
+  </div>
+
+  <!-- ===== ACTION ===== -->
+  <div class="kt-action">
+    <button id="btnSubmit">Nộp bài</button>
+    <button onclick="location.href='/index.html'">Home</button>
+  </div>
+
+</section>

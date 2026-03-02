@@ -1,0 +1,136 @@
+<h2>CẬP NHẬT LỊCH DẠY</h2>
+
+<div class="form-box">
+  <label>Tên giáo viên:</label>
+  <select id="ldGiaoVien"></select>
+
+  <label>Lớp:</label>
+  <select id="ldLop"></select>
+
+  <label>Năm:</label>
+  <input type="number" id="ldNam" readonly>
+
+  <label>Tháng:</label>
+  <select id="ldThang"></select>
+
+  <label>Tuần:</label>
+  <select id="ldTuan">
+    <option value="1">Tuần 1</option>
+    <option value="2">Tuần 2</option>
+    <option value="3">Tuần 3</option>
+    <option value="4">Tuần 4</option>
+  </select>
+
+  <label>Từ ngày:</label>
+  <input type="date" id="ldTuNgay">
+  <label>Đến ngày:</label>
+  <input type="date" id="ldDenNgay">
+
+  <div class="lichday-box">
+  <div class="lichday-head">LỊCH DẠY</div>
+
+  <div class="lichday-grid">
+    <!-- Thứ 2 -->
+    <div class="day-col">
+      <label>
+        <input type="checkbox" class="day-check" data-day="t2">
+        Thứ 2
+      </label>
+      <input type="text" class="day-time" data-day="t2"
+             placeholder="VD: 7-9, 15-17" disabled>
+    </div>
+
+    <!-- Thứ 3 -->
+    <div class="day-col">
+      <label>
+        <input type="checkbox" class="day-check" data-day="t3">
+        Thứ 3
+      </label>
+      <input type="text" class="day-time" data-day="t3"
+             placeholder="VD: 9-11" disabled>
+    </div>
+
+    <!-- Thứ 4 -->
+    <div class="day-col">
+      <label>
+        <input type="checkbox" class="day-check" data-day="t4">
+        Thứ 4
+      </label>
+      <input type="text" class="day-time" data-day="t4"
+             placeholder="VD: 13-15" disabled>
+    </div>
+
+    <!-- Thứ 5 -->
+    <div class="day-col">
+      <label>
+        <input type="checkbox" class="day-check" data-day="t5">
+        Thứ 5
+      </label>
+      <input type="text" class="day-time" data-day="t5"
+             placeholder="VD: 15-17" disabled>
+    </div>
+
+    <!-- Thứ 6 -->
+    <div class="day-col">
+      <label>
+        <input type="checkbox" class="day-check" data-day="t6">
+        Thứ 6
+      </label>
+      <input type="text" class="day-time" data-day="t6"
+             placeholder="VD: 7-9" disabled>
+    </div>
+
+    <!-- Thứ 7 -->
+    <div class="day-col">
+      <label>
+        <input type="checkbox" class="day-check" data-day="t7">
+        Thứ 7
+      </label>
+      <input type="text" class="day-time" data-day="t7"
+             placeholder="VD: 17-19" disabled>
+    </div>
+
+    <!-- CN -->
+    <div class="day-col">
+      <label>
+        <input type="checkbox" class="day-check" data-day="cn">
+        CN
+      </label>
+      <input type="text" class="day-time" data-day="cn"
+             placeholder="VD: 8-10" disabled>
+    </div>
+  </div>
+</div>
+
+
+  <div class="btn-row">
+    <button id="btnThem">Thêm</button>
+    <button id="btnLuu" style="display:none">Lưu</button>
+    <button id="btnXoa" style="display:none">Xóa</button>
+  </div>
+</div>
+
+<hr>
+
+<h3>Sắp xếp theo</h3>
+Năm:
+<select id="fNam"></select>
+Tháng:
+<select id="fThang"></select>
+Tuần:
+<select id="fTuan"></select>
+
+<table class="admin-table">
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>Giáo viên</th>
+      <th>Lớp</th>
+      <th>T2</th><th>T3</th><th>T4</th>
+      <th>T5</th><th>T6</th><th>T7</th><th>CN</th>
+    </tr>
+  </thead>
+  <tbody id="lichdayTable"></tbody>
+</table>
+
+<div id="toast" class="toast"></div>

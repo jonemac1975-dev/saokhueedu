@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Preview bài giảng</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  /* ===== NỀN NGOÀI (BÀN ĐỌC SÁCH) ===== */
+  body {
+    margin: 0;
+    padding: 0;
+    background: #e5e7eb;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+    color: #111;
+  }
+
+  /* ===== TRANG SÁCH ===== */
+
+
+ .preview-wrapper {
+  max-width: 1100px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 40px 48px;
+  border-radius: 6px;
+  box-shadow: ...
+ 
+min-height: 100vh;   /* CHO PHÉP GIÃN */
+  height: auto;        /* RẤT QUAN TRỌNG */
+  overflow: visible;   /* KHÔNG ĐƯỢC hidden */
+}
+
+html, body {
+  height: 100%;
+}
+
+body.fullscreen-active {
+  overflow: hidden;   /* chỉ khóa scroll body thôi */
+}
+
+  .lesson-title {
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  .lesson-meta {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 24px;
+  }
+
+  .lesson-content {
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+  overflow: visible;
+  max-height: none;
+  min-height: 60vh;
+}
+
+
+  /* ===== TABLE ===== */
+  .lesson-content table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 14px 0 !important;
+  }
+  .lesson-content th,
+  .lesson-content td {
+    border: 1px solid #999 !important;
+    padding: 8px 10px !important;
+    text-align: left !important;
+    vertical-align: top !important;
+  }
+
+  /* ===== ẢNH / VIDEO / PDF ===== */
+  .lesson-content img,
+  .lesson-content iframe,
+  .lesson-content video {
+    display: block;
+    margin: 16px auto;
+    max-width: 100%;
+    border-radius: 6px;
+  }
+
+  /* PDF iframe */
+  .lesson-content iframe {
+  display: block;
+  margin: 16px auto;
+  max-width: 100%;
+  border-radius: 6px;
+  border: none;
+}
+.lesson-content iframe[src*="audio"],
+.lesson-content iframe[style*="height:60px"] {
+  height: 60px !important;
+  max-width: 420px;
+}
+
+:fullscreen .lesson-content iframe[src*="/preview"] {
+  height: 100vh !important;
+}
+
+
+
+  /* ===== GIỮ STYLE WORD ===== */
+  .lesson-content * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* ===== TEXT WORD ===== */
+  .word-text {
+    white-space: pre-wrap;
+    font-family: "Times New Roman", serif;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  
+:fullscreen body {
+  background: #e5e7eb;
+}
+
+:fullscreen .preview-wrapper {
+  margin: 0 auto;
+  min-height: 100vh;
+  max-width: 1200px;
+}
+/* ===== FULLSCREEN FIX ===== */
+:fullscreen .preview-wrapper {
+  max-width: 100vw !important;
+  width: 100vw !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* xóa nền tối 2 bên */
+:fullscreen body {
+  background: #fff !important;
+}
+/* ===== FULLSCREEN MASK 2 DẢI ===== */
+:fullscreen,
+:fullscreen body {
+  background: #fff !important;   /* cùng màu preview */
+}
+
+/* nếu browser dùng ::backdrop */
+::backdrop {
+  background: #e5e7eb !important;
+}
+
+/* ===== ĐẨY TIÊU ĐỀ LÊN SÁT TRÊN ===== */
+:fullscreen .preview-wrapper {
+  margin-top: 0 !important;
+  padding-top: 6px !important;
+}
+
+/* nếu muốn sát nữa */
+:fullscreen .lesson-title {
+  margin-top: 0 !important;
+}
+/* ===== TOP CONTROLS ===== */
+.top-controls {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 9999;
+  display: flex;
+  gap: 10px;
+}
+
+#btnHome,
+#btnFullscreen {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#btnHome:hover,
+#btnFullscreen:hover {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+:fullscreen .preview-wrapper {
+  height: 100vh;
+  overflow-y: auto;      /* ⭐ BẮT BUỘC */
+  -webkit-overflow-scrolling: touch;
+}
+
+.doc-frame {
+  width: 100%;
+  height: 80vh;
+  border: none;
+  border-radius: 6px;
+}
+
+:fullscreen .doc-frame {
+  height: 100vh !important;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+
+<div class="preview-wrapper">
+
+  <div class="lesson-title" id="pTitle"></div>
+  <div class="lesson-meta" id="pMeta"></div>
+  <div class="lesson-content" id="pContent"></div>
+
+<button id="btnFs"
+style="
+position:fixed;
+top:10px;
+right:10px;
+z-index:9999;
+font-size:18px;
+padding:6px 10px;
+">
+⛶
+</button>
+<div class="top-controls">
+  <a href="../index.html" id="btnHome"><== </a>
+  
+</div>
+
+   
+</div>
+
+<script>
+const data = JSON.parse(localStorage.getItem("lesson_preview") || "{}");
+
+const titleEl = document.getElementById("pTitle");
+const metaEl  = document.getElementById("pMeta");
+const contentEl = document.getElementById("pContent");
+
+titleEl.innerText = data.title || data.name || "Bài giảng";
+metaEl.innerText  = data.meta || "";
+
+/* ===== UTIL ===== */
+function isURL(text) {
+  return /^https?:\/\//i.test(text.trim());
+}
+
+function isDrivePreview(url) {
+  return url.includes("drive.google.com") && url.includes("/preview");
+}
+
+function isPDF(url) {
+  return url.toLowerCase().endsWith(".pdf") || isDrivePreview(url);
+}
+
+function isFlipbook(url) {
+  return url.endsWith(".html");
+}
+
+/* ===== WORD CLEAN ===== */
+function cleanWordHTML(html) {
+  if (!html) return "<i>Không có nội dung</i>";
+  return html
+    .replace(/class="?Mso[a-zA-Z0-9]*"?/g, "")
+    .replace(/style="[^"]*mso-[^"]*"/g, "")
+    .replace(/<o:p>\s*<\/o:p>/g, "")
+    .replace(/<span style="[^"]*"><\/span>/g, "")
+    .replace(/<!--\[if[^>]*>.*?<!\[endif\]-->/g, "");
+}
+
+/* ===== MAIN RENDER ===== */
+(function render() {
+  const raw = (data.content || "").trim();
+
+  if (!raw) {
+    contentEl.innerHTML = "<i>Không có nội dung</i>";
+    return;
+  }
+
+  // 👉 CASE: LINK
+  if (isURL(raw)) {
+    let label = "📄 Tài liệu";
+
+    if (isFlipbook(raw)) label = "📕 Sách lật";
+    else if (isPDF(raw)) label = "📄 PDF / PPT";
+
+    contentEl.innerHTML = `
+      <div style="text-align:center;font-weight:600;margin-bottom:8px;">
+        ${label}
+      </div>
+      <iframe 
+        src="${raw}"
+        class="doc-frame"
+        loading="lazy"
+        allowfullscreen>
+      </iframe>
+    `;
+    return;
+  }
+
+  // 👉 CASE: WORD
+  contentEl.innerHTML = cleanWordHTML(raw);
+})();
+</script>
+
+<script>
+const btn = document.getElementById("btnFs");
+
+btn.onclick = async () => {
+  if (!document.fullscreenElement) {
+    await document.documentElement.requestFullscreen();
+    document.body.classList.add("fullscreen-active");
+  } else {
+    await document.exitFullscreen();
+    document.body.classList.remove("fullscreen-active");
+  }
+};
+</script>
+
+
+
+</body>
+</html>

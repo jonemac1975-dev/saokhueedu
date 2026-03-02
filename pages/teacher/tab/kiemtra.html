@@ -1,0 +1,78 @@
+<section class="kiemtra-wrap">
+  <h2 class="kt-title">CẬP NHẬT BÀI KIỂM TRA ĐỊNH KỲ</h2>
+
+  <div class="kt-form">
+    <div class="kt-row">
+      <label><b>ID Giáo viên</label>
+      <input type="text" id="kt_giaovien" readonly />
+    </div>
+
+    <div class="kt-row">
+      <label><b>Môn học</label>
+      <select id="kt_monhoc"></select>
+    </div>
+
+    <div class="kt-row">
+      <label><b>Lớp</label>
+      <select id="kt_lop"></select>
+    </div>
+
+    <div class="kt-row">
+      <label><b>Kỳ kiểm tra</label>
+      <select id="kt_kythi"></select>
+    </div>
+
+    <div class="kt-row">
+      <label><b>Tiêu đề</label>
+      <input type="text" id="kt_tieude" />
+    </div>
+
+    <div class="kt-row">
+      <label><b>Ngày cập nhật</label>
+      <input type="date" id="kt_ngay" />
+    </div>
+
+    <!-- TOOLBAR -->
+    <input type="file" id="fileInput" hidden />
+<div class="kt-row">
+<label><b>Dán nội dung từ Word vào đây :</b></label>
+</div>
+<div >
+<label>Đặt trỏ tại vị trí cần chèn rồi nhấn các nút bên dưới để chèn</label>
+</div>
+
+<div class="kt-toolbar">
+  <button id="btnChooseFile">Ảnh</button>
+  <button id="btnAudio">Audio</button>
+  <button id="btnMp4">Mp4</button>
+  <button id="btnYoutube">YouTube</button>
+  <button id="btnPdf">PDF</button>
+  <button id="btnPptx">PPT / HTML</button>
+  <button id="btnPreview">Preview</button>
+</div>
+
+
+    <!-- EDITOR -->
+    <div id="kt_noidung" class="kt-editor" contenteditable></div>
+      
+    </div>
+
+    <div class="kt-actions">
+      <button id="kt_add">➕Thêm</button>
+      <button id="kt_save">💾Lưu</button>
+    </div>
+  </div>
+
+  <h3><b>Danh sách bài kiểm tra</h3>
+  <table class="kt-table">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Tiêu đề</th>
+        <th>Ngày</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+    <tbody id="kt_list"></tbody>
+  </table>
+</section>

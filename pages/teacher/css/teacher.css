@@ -1,0 +1,934 @@
+/* ===============================
+TEACHER UI LEVEL 2 – MODERN
+Đồng bộ toàn bộ tab
+=============================== */
+
+:root{
+--primary:#2563eb;
+--primary-soft:#e8f0ff;
+--bg:#f4f7fb;
+--card:#ffffff;
+--border:#e2e8f0;
+--text:#1e293b;
+--muted:#64748b;
+}
+
+body{
+background:var(--bg);
+color:var(--text);
+font-family:"Segoe UI",sans-serif;
+}
+
+/* ===== HEADER ===== */
+.gv-header{
+height:64px;
+background:linear-gradient(135deg,#1e3a8a,#2563eb);
+color:#fff;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:0 24px;
+box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.header-actions button{
+background:#fff;
+color:var(--primary);
+border:none;
+padding:6px 14px;
+margin-left:8px;
+border-radius:8px;
+cursor:pointer;
+font-size:13px;
+}
+
+/* ===== MENU ===== */
+.gv-menu{
+width:230px;
+background:#fff;
+border-right:1px solid var(--border);
+padding-top:12px;
+}
+
+.menu-item{
+padding:12px 18px;
+cursor:pointer;
+font-size:14px;
+border-left:4px solid transparent;
+transition:.2s;
+}
+
+.menu-item:hover{
+background:var(--primary-soft);
+}
+
+.menu-item.active{
+background:var(--primary-soft);
+border-left:4px solid var(--primary);
+color:var(--primary);
+font-weight:600;
+}
+
+/* ===== CONTENT ===== */
+.gv-content{
+flex:1;
+padding:28px 34px;
+}
+
+/* ===== CARD ===== */
+.card,
+.form-wrapper{
+background:var(--card);
+padding:24px;
+border-radius:14px;
+box-shadow:0 8px 25px rgba(0,0,0,.05);
+margin-bottom:24px;
+}
+
+.section-title{
+font-size:18px;
+margin-bottom:16px;
+color:var(--primary);
+}
+
+/* ===== FORM ===== */
+.baigiang-card .form-grid {
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+}
+
+.form-group{
+display:flex;
+flex-direction:column;
+}
+
+.form-group.full{
+grid-column:1 / -1;
+}
+
+label{
+font-size:13px;
+margin-bottom:4px;
+color:var(--muted);
+font-weight:600;
+}
+
+input,select{
+padding:8px 10px;
+border-radius:8px;
+border:1px solid var(--border);
+background:#f9fafb;
+font-size:14px;
+}
+
+input:focus,select:focus{
+outline:none;
+border-color:var(--primary);
+background:#fff;
+}
+
+/* ===== EDITOR ===== */
+.html-editor,
+.editor-box{
+min-height:220px;
+border:1px solid var(--border);
+border-radius:10px;
+padding:12px;
+background:#fff;
+}
+
+.editor-toolbar{
+margin-bottom:8px;
+display:flex;
+gap:6px;
+flex-wrap:wrap;
+}
+
+.editor-toolbar button{
+background:#f1f5f9;
+color:var(--text);
+border:1px solid var(--border);
+padding:4px 10px;
+border-radius:6px;
+font-size:12px;
+cursor:pointer;
+}
+
+.editor-toolbar button:hover {
+  background: #e5e7eb;
+}
+
+/* ===== BUTTONS ===== */
+.actions{
+margin-top:16px;
+display:flex;
+gap:10px;
+}
+
+.btn-primary{
+background:var(--primary);
+color:#fff;
+border:none;
+padding:8px 18px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.btn-secondary{
+background:#e2e8f0;
+border:none;
+padding:8px 18px;
+border-radius:8px;
+cursor:pointer;
+}
+
+/* ===== TABLE ===== */
+.bg-table,
+.table-list{
+width:100%;
+border-collapse:collapse;
+margin-top:16px;
+}
+
+.bg-table th,
+.table-list th{
+background:#f1f5f9;
+padding:8px;
+border:1px solid var(--border);
+}
+
+.bg-table td,
+.table-list td{
+padding:8px;
+border:1px solid var(--border);
+}
+
+/* ===== SMALL PREVIEW BOX ===== */
+#previewMp3,
+#previewMp4,
+#previewYoutube{
+margin-top:6px;
+}
+
+/* ===== FIX LAYOUT TAB RIGHT ===== */
+.gv-layout {
+  display: flex;
+  align-items: flex-start;
+}
+
+.gv-menu {
+  flex-shrink: 0;
+}
+
+.gv-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ===== PROFILE VIEW ===== */
+.gv-profile {
+  display: flex;
+  gap: 30px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  border: 1px solid #e5e7eb;
+}
+
+.gv-profile-left {
+  width: 180px;
+  text-align: center;
+}
+
+.gv-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 5px solid #e0e7ff;
+  object-fit: cover;
+}
+
+.gv-profile-right h2 {
+  color: #1e3a8a;
+  margin-bottom: 15px;
+}
+
+.gv-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.gv-info div {
+  background: #f8fafc;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+/* ===== KIEM TRA ===== */
+.kiemtra-wrap {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.kt-title {
+  color: #1e3a8a;
+  margin-bottom: 20px;
+}
+
+.kt-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.kt-row label {
+  width: 140px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.kt-row input,
+.kt-row select {
+  flex: 1;
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #f9fafb;
+}
+
+.kt-editor {
+  min-height: 240px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  padding: 12px;
+  margin-top: 10px;
+}
+
+.kt-toolbar button {
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.kt-toolbar button:hover {
+  background: #dbeafe;
+}
+
+.kt-actions button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.kt-actions button:hover {
+  background: #1d4ed8;
+}
+
+/* ===== KIEMTRA LIST WIDE ===== */
+.kiemtra-wrap .kt-table {
+  width: 100%;
+  margin-top: 16px;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.kiemtra-wrap .kt-table th,
+.kiemtra-wrap .kt-table td {
+  padding: 10px 12px;
+  border: 1px solid #e3e8f0;
+  text-align: center;
+}
+
+/* Header đẹp hơn */
+.kiemtra-wrap .kt-table th {
+  background: #f4f6fb;
+  font-weight: 600;
+}
+
+/* Hover nhìn dễ thao tác */
+.kiemtra-wrap .kt-table tr:hover {
+  background: #f9fbff;
+}
+
+/* ===== LICH DAY ===== */
+.teacher-lichday {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.ld-header h2 {
+  color: #1e3a8a;
+  margin-bottom: 15px;
+}
+
+.ld-filter {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.ld-row label {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.ld-row input,
+.ld-row select {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #f9fafb;
+}
+
+.time-info {
+  margin-top: 10px;
+  background: #eef2ff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #c7d2fe;
+}
+
+/* ===== TEST ===== */
+.editor {
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  padding: 14px;
+}
+
+.kt-form .row {
+  margin-bottom: 15px;
+}
+
+.kt-form input {
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #f9fafb;
+}
+
+.actions button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.actions button:hover {
+  background: #1d4ed8;
+}
+
+/* ===== TEST LIST WIDE ===== */
+.kt-table {
+  width: 100%;
+  margin-top: 16px;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.kt-table th,
+.kt-table td {
+  padding: 10px 12px;
+  border: 1px solid #e3e8f0;
+  text-align: center;
+}
+
+.kt-table th {
+  background: #f4f6fb;
+  font-weight: 600;
+}
+
+.kt-table tr:hover {
+  background: #f9fbff;
+}
+
+/* ===== FIX LỊCH DẠY ===== */
+.teacher-lichday table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.teacher-lichday th,
+.teacher-lichday td {
+  border: 1px solid #e3e8f0;
+  padding: 6px 8px;
+  text-align: center;
+}
+
+/* Ô có dữ liệu */
+.teacher-lichday td:not(:empty) {
+  background: #fff7cc;
+  font-weight: 500;
+}
+
+/* Header giữ đẹp */
+.teacher-lichday th {
+  background: #f5f7fb;
+}
+
+/* ===== PROFILE PAGE WRAPPER ===== */
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+/* ===== PROFILE CARD ===== */
+.profile-card {
+  width: 100%;
+  max-width: 900px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  padding: 30px 35px;
+}
+
+/* ===== TITLE ===== */
+.page-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #2d3a4b;
+  border-left: 6px solid #4e73ff;
+  padding-left: 12px;
+}
+
+/* ===== MESSAGE ===== */
+.msg {
+  margin-bottom: 15px;
+  color: #2e7d32;
+  font-weight: 500;
+}
+
+/* ===== AVATAR BOX ===== */
+.avatar-box {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.avatar-box img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #eef2ff;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  margin-bottom: 10px;
+}
+
+.avatar-box input {
+  margin-top: 10px;
+}
+
+.avatar-actions {
+  margin-top: 8px;
+}
+
+/* ===== FORM GRID ===== */
+
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+/* ===== INPUT / SELECT ===== */
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: 1px solid #dfe3eb;
+  background: #fafbff;
+  transition: 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #4e73ff;
+  background: #fff;
+  outline: none;
+}
+
+/* ===== CHECKBOX GROUP ===== */
+.checkbox-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  padding-top: 5px;
+}
+
+.checkbox-group label {
+  font-weight: 500;
+}
+
+/* ===== ACTIONS ===== */
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: #4e73ff;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: #3c5ce0;
+}
+
+.btn-secondary {
+  background: #f0f3ff;
+  color: #4e73ff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-secondary:hover {
+  background: #e3e8ff;
+}
+
+/* ===== CENTER PAGE ===== */
+body {
+  background: #f5f7fb;
+}
+
+/* căn giữa toàn màn hình */
+body > .change-pass-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ===== CARD ===== */
+.change-pass-card {
+  width: 360px;
+  background: #fff;
+  padding: 30px 28px;
+  border-radius: 18px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+/* ===== TITLE ===== */
+.change-pass-card h2 {
+  margin-bottom: 25px;
+  color: #2d3a4b;
+}
+
+/* ===== FORM ===== */
+.change-pass-card .form-group {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.change-pass-card label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.change-pass-card input {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: 1px solid #dfe3eb;
+  background: #fafbff;
+}
+
+.change-pass-card input:focus {
+  border-color: #4e73ff;
+  background: #fff;
+  outline: none;
+}
+
+/* ===== BUTTONS ===== */
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-group button {
+  padding: 9px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: #4e73ff;
+  color: #fff;
+}
+
+.btn-group .cancel {
+  background: #eef2ff;
+  color: #4e73ff;
+}
+
+.btn-group button:hover {
+  opacity: 0.9;
+}
+
+/* ===== CENTER AUTH PAGE ===== */
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #eef2ff, #f8f9fc);
+}
+
+/* ===== AUTH CARD ===== */
+.auth-card {
+  width: 380px;
+  padding: 32px 28px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+  animation: fadeUp .4s ease;
+}
+
+/* ===== TITLE ===== */
+.auth-card .page-title {
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 22px;
+  color: #2d3a4b;
+}
+
+/* ===== INPUT ===== */
+.auth-card input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #dfe3eb;
+  background: #fafbff;
+}
+
+.auth-card input:focus {
+  border-color: #4e73ff;
+  background: #fff;
+  outline: none;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.auth-card .actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.auth-card .btn-primary {
+  flex: 1;
+  background: #4e73ff;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.auth-card .btn-secondary {
+  flex: 1;
+  background: #eef2ff;
+  color: #4e73ff;
+  border-radius: 10px;
+}
+
+.auth-card .btn-primary:hover,
+.auth-card .btn-secondary:hover {
+  opacity: .9;
+}
+
+/* ===== MESSAGE ===== */
+.msg {
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #ff4d4f;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== GLOBAL TOAST ===== */
+#toast {
+  position: fixed;
+  top: 80px;
+  right: 520px;
+  min-width: 240px;
+  max-width: 320px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 500;
+  color: white;
+  background: #4e73ff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(-20px);
+  z-index: 99999;
+  pointer-events: none;
+  transition: all 0.35s ease;
+}
+
+/* hiện */
+#toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* loại */
+#toast.success { background: #22c55e; }
+#toast.error   { background: #ef4444; }
+#toast.warn    { background: #f59e0b; }
+#toast.info    { background: #4e73ff; }
+
+
+/* Giữ format Word đẹp hơn */
+#bgNoiDung p {
+  margin: 8px 0;
+}
+
+#bgNoiDung img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+.form-group.full {
+  grid-column: 1 / -1;
+}
+
+/* ===== BÀI GIẢNG EDITOR FIX ===== */
+
+#bgNoiDung {
+  width: 100%;
+  min-height: 350px;
+  max-height: 600px;
+  padding: 16px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  line-height: 1.7;
+  font-size: 15px;
+
+  border: 1px solid #dbe2f0;
+  border-radius: 12px;
+  background: #ffffff;
+
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.04);
+
+  box-sizing: border-box;
+}
+
+/* scroll đẹp hơn */
+#bgNoiDung::-webkit-scrollbar {
+  width: 8px;
+}
+
+#bgNoiDung::-webkit-scrollbar-thumb {
+  background: #c7d2fe;
+  border-radius: 6px;
+}
+
+#bgNoiDung::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+/* Word paste fix */
+#bgNoiDung p {
+  margin: 10px 0;
+}
+
+#bgNoiDung table {
+  width: 100% !important;
+  border-collapse: collapse;
+}
+
+#bgNoiDung table td,
+#bgNoiDung table th {
+  border: 1px solid #e2e8f0;
+  padding: 6px;
+}
+
+#bgNoiDung img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 8px auto;
+}
+
+/* ===== SCROLL CHO TEST EDITOR ===== */
+#test_noidung {
+  width: 100%;
+  min-height: 220px;     /* cao mặc định */
+  max-height: 520px;     /* quá cao thì bắt đầu scroll */
+
+  padding: 14px;
+  line-height: 1.6;
+
+  overflow-y: auto;      /* 👈 scroll dọc */
+  overflow-x: hidden;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  background: #ffffff;
+
+  box-sizing: border-box;
+}
+
+/* scroll đẹp hơn */
+#test_noidung::-webkit-scrollbar {
+  width: 8px;
+}
+
+#test_noidung::-webkit-scrollbar-thumb {
+  background: #c7d2fe;
+  border-radius: 6px;
+}
+
+#test_noidung::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}

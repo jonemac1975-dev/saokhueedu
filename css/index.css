@@ -1,0 +1,1122 @@
+/* ===== RESET ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  background: #f2f4f7;
+  color: #222;
+}
+
+/* ================= HEADER ================= */
+
+.header {
+  display: grid;
+  grid-template-columns: 220px 1fr 220px;
+  align-items: center;
+  padding: 15px 20px;
+  background: #3f6fc1;
+  color: #fff;
+}
+
+/* ===== LEFT ===== */
+.header-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Logo trung tâm */
+.logo.big {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+/* Avatar giáo viên */
+.logo.small {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 6px;
+  display: none;
+}
+
+/* Tên giáo viên */
+.user-name {
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  color: #fff;
+}
+
+/* ===== CENTER ===== */
+.header-center {
+  text-align: center;
+  overflow: hidden;   /* 👈 Quan trọng để che phần chữ tràn */
+  position: relative;
+}
+
+
+.header-center h1 {
+  font-size: 40px;       /* 👈 to hơn */
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.header-center h2 {
+  font-size: 25px;       /* 👈 to hơn */
+  font-weight: 600;
+  margin-top: 6px;
+  letter-spacing: 1px;
+}
+
+.header-center p {
+  display: inline-block;
+  white-space: nowrap;
+
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: #ffd700;
+  margin-top: 6px;
+
+  animation: sloganMove 12s linear infinite;
+}
+/* Animation chạy từ phải sang trái */
+@keyframes sloganMove {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+/* ===== RIGHT ===== */
+.header-right {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+
+  align-self: end;     /* 👈 Kéo riêng cột này xuống đáy */
+  padding-bottom: 2px; /* 👈 Nhích thêm chút cho đẹp */
+}
+
+
+.header-right input {
+  padding: 3px;
+  border-radius: 2px;
+  border: none;
+}
+
+.header-right button {
+  padding: 4px 6px;
+  border: none;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+/* ================= MAIN LAYOUT ================= */
+.layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0,1fr) 250px;
+  gap: 20px;
+  padding: 20px;
+  align-items: start;
+}
+
+/* ================= SIDEBAR CHUNG ================= */
+.sidebar {
+  background: #ffffff;
+  padding: 14px;
+  border-right: 1px solid #ddd;
+}
+
+.sidebar.student {
+  border-right: none;
+  border-left: 1px solid #ddd;
+}
+
+.sidebar h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #1a237e;
+}
+
+/* ===== AVATAR + NAME ===== */
+.avatar {
+  width: 90px;
+  height: 90px;
+  margin: 8px auto;
+  border-radius: 50%;
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.name {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* ===== BUTTON ===== */
+.sidebar button {
+  width: 100%;
+  margin: 5px 0;
+  padding: 7px;
+  border: none;
+  border-radius: 6px;
+  background: #3f6fc1;
+  color: #fff;
+  cursor: pointer;
+}
+
+.sidebar button:hover {
+  background: #355ea3;
+}
+
+.page-btn {
+  margin-top: 10px;
+  background: #2e7d32;
+}
+
+.page-btn:hover {
+  background: #256628;
+}
+
+/* ===== SELECT ===== */
+.sidebar select {
+  width: 100%;
+  padding: 6px;
+  margin: 8px 0;
+}
+
+/* ===== MENU ===== */
+.menu {
+  margin-top: 10px;
+}
+
+.menu-title {
+  font-weight: 600;
+  margin-top: 8px;
+  cursor: pointer;
+  color: #1a237e;
+}
+
+
+
+.submenu li {
+  font-size: 14px;
+  padding: 3px 0;
+  cursor: pointer;
+}
+
+.submenu li:hover {
+  text-decoration: underline;
+}
+
+/* ===== MEDIA (GV) ===== */
+.media {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.media div {
+  background: #e3e8f0;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+/* ================= CONTENT CENTER ================= */
+.content {
+  padding: 20px;
+  background: #fafafa;
+}
+
+
+
+
+/* ================= FOOTER ================= */
+
+
+.footer-box {
+  line-height: 1.5;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0;
+}
+
+.footer li {
+  margin-bottom: 6px;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+
+/* HEADER */
+.header-bg {
+  background-size: cover;
+  background-position: center;
+  transition: background-image 1s ease-in-out;
+}
+
+/* MAIN */
+.main-bg {
+  background-size: cover;
+  background-position: center;
+  transition: background-image 1s ease-in-out;
+}
+
+/* AVATAR */
+.logo-center,
+.logo-gv {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* FOOTER */
+.footer-zone a {
+  color: #ddd;
+  text-decoration: none;
+}
+.footer-zone a:hover {
+  color: #fff;
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  transition: transform 0.25s ease, 
+              box-shadow 0.25s ease,
+              border 0.25s ease;
+}
+
+
+
+.footer {
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 1fr; 
+  gap: 16px;
+  background: #222;
+  color: #eee;
+  padding: 20px;
+}
+
+.footer-box a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.footer-box a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+
+/..........Phần các ô ở main ....../
+/* ===== CARD CHUNG ===== */
+
+/* body card */
+.card-body {
+  padding: 10px;
+  font-size: 14px;
+}
+
+.course-card img.card-img {
+  width: 100%;
+  height: 150px;          /* 👈 ép nhỏ */
+  object-fit: cover;
+  background: #eee;
+}
+
+.course-card strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.course-card a {
+  font-size: 13px;
+  color: #1a73e8;
+  text-decoration: none;
+}
+.course-card a:hover {
+  text-decoration: underline;
+}
+
+.video-card .video-thumb {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.video-card strong {
+  font-size: 13px;
+}
+
+
+.card strong {
+  font-size: 13px;
+  text-align: center;
+}
+
+#mainGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* Khi vào working mode thì tắt background */
+.working-mode {
+  background-image: none !important;
+}
+
+
+.submenu {
+  display: none;
+  list-style: none;
+  padding-left: 15px;
+}
+
+.submenu li {
+  cursor: pointer;
+  padding: 6px 0;
+  color: #1976d2;
+}
+
+.submenu li:hover {
+  text-decoration: underline;
+}
+
+/* ===== SCROLL nội dung bài giảng ===== */
+.lesson-content {
+  max-height: calc(100vh - 180px);
+  overflow-y: auto;
+  padding: 15px;
+}
+
+#teacherPlayer {
+  margin-top: 10px;
+}
+
+
+
+.tieubieu {
+  text-align: center;
+}
+
+.card-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 10px auto;
+}
+
+/* ===== MAIN SECTION ===== */
+.main-section {
+  margin-bottom: 50px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #ffb300;
+border-left: 5px solid #ffb300;
+  padding-left: 12px;
+}
+
+.section-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px,1fr));
+  gap: 20px;
+}
+
+/* ===== CARD ===== */
+.card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  transition: .25s;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+  border: 1px solid #e3f2fd;
+}
+
+.card-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+transition: transform 0.35s ease;
+}
+
+.card:hover .card-img {
+  transform: scale(1.05);
+}
+
+.card-body {
+  padding: 14px;
+}
+
+.highlight-card {
+  transition: transform 0.25s ease;
+}
+
+.highlight-card:hover {
+  transform: translateY(-5px);
+}
+
+.badge {
+  position: relative; 
+  background: #ff3d00;
+  color: #fff;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 999px;
+  animation: blinkBadge 1.2s infinite;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+@keyframes blinkBadge {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.course-card a {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1565c0;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.course-card a:hover {
+  color: #0d47a1;
+  text-decoration: underline;
+}
+/* ===== HIGHLIGHT ===== */
+.center {
+  text-align: center;
+}
+
+
+
+
+.highlight-card img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 4px solid #e3f2fd;
+}
+
+
+
+/* Mobile thì 1 cột */
+
+
+.sidebar.student {
+  background: #f9fbff;
+  border-radius: 12px;
+  padding: 25px;
+}
+
+
+
+
+/* Card tiêu biểu */
+
+.content {
+  min-width: 0;
+}
+
+
+/* ===== CỘT TIÊU BIỂU CHUẨN ===== */
+
+
+
+.highlight-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.highlight-card {
+  width: 100%;
+  text-align: center;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .main-section.center {
+    max-width: 100%;
+  }
+}
+
+
+/* ===== VIDEO MODAL ===== */
+.video-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* khi active */
+.video-modal.active {
+  display: flex;
+}
+
+/* khi mini → không chặn nền */
+.video-modal.mini-mode {
+  background: transparent;
+  pointer-events: none;   /* nền không ăn chuột */
+}
+
+/* Quan trọng: bật lại chuột cho box */
+.video-modal.mini-mode .video-box {
+  pointer-events: auto;
+}
+
+.video-box {
+  width: 80%;
+  max-width: 900px;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  animation: zoomIn 0.3s ease;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  z-index: 10;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.video-controls {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  z-index: 10;
+}
+
+.video-controls button {
+  margin-left: 5px;
+  background: #ff4d4d;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+/* ===== MINI MODE ===== */
+.video-box.mini {
+  position: fixed;
+  width: 320px;
+  height: 180px;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 10000;
+  cursor: move;
+}
+
+.video-box.mini iframe {
+  height: 100%;
+}
+
+body{
+  opacity: 0;
+}
+
+body.ready{
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+/* ===== COURSE CARD BODY LAYOUT ===== */
+.course-card .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ===== LINK ĐỎ NẰM DƯỚI ===== */
+.course-card .course-link {
+  margin-top: auto;              /* 👈 đẩy xuống đáy */
+  padding-top: 8px;
+  border-top: 1px solid #eee;
+
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #d32f2f;
+  text-decoration: none;
+  transition: 0.25s;
+}
+
+.course-card .course-link:hover {
+  color: #b71c1c;
+  letter-spacing: 0.5px;
+}
+
+.course-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.course-card .card-body {
+  padding: 14px;
+}
+
+
+.course-card .course-link:hover {
+  text-decoration: underline;
+}
+
+/* ===== VIDEO CARD FIX CHIỀU CAO ===== */
+.video-card {
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+}
+
+.course-card .card-img {
+  width: 100%;
+  height: 160px;     /* tăng nhẹ */
+  object-fit: cover;
+  display: block;
+}
+
+.video-card .card-body {
+  flex: 1;              /* 👈 cho body giãn */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+.video-card strong {
+  font-size: 14px;
+  line-height: 1.4;
+}
+.video-card:hover {
+  transform: translateY(-5px);
+  transition: 0.2s;
+}
+
+/* ===== MAIN GRID GỌN ===== */
+#mainGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;   /* khoảng cách giữa các section */
+}
+
+/* ===== SECTION ===== */
+.main-section {
+  margin-bottom: 0;   /* bỏ margin dư */
+}
+
+.section-title {
+  font-size: 17px;
+  margin-bottom: 14px;   /* gọn lại */
+}
+
+/* ===== GRID CARD ===== */
+.section-grid {
+  gap: 16px;   /* khoảng cách card vừa phải */
+}
+
+/* ===== CARD ===== */
+.card {
+  border-radius: 18px;
+}
+
+/* Ảnh vừa phải, không quá cao */
+.card-img {
+  height: 90px;
+}
+
+/* Body gọn */
+.card-body {
+  padding: 14px;
+}
+
+/* ===== LINK KHÓA HỌC ===== */
+.course-card .course-link {
+  padding-top: 6px;
+  font-size: 16px;
+}
+
+/* ===== TIÊU BIỂU ===== */
+.highlight-row {
+  gap: 22px;
+}
+
+.highlight-card img {
+  width: 85px;
+  height: 85px;
+}
+
+@media (max-width: 768px) {
+
+  /* Layout 1 cột */
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  /* Sidebar full width */
+  .sidebar {
+    border: none;
+    padding: 12px;
+  }
+
+  /* Main grid 1 cột */
+  .section-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  /* Card bo nhỏ lại */
+  .card {
+    border-radius: 10px;
+  }
+
+  .card-img {
+    height: 180px;
+  }
+
+  /* Header chữ nhỏ lại */
+  .header-center h1 {
+    font-size: 24px;
+  }
+
+  .header-center h2 {
+    font-size: 14px;
+  }
+
+  .header-center p {
+    font-size: 14px;
+  }
+
+  /* Cột tiêu biểu full width */
+  .main-section.center {
+    max-width: 100%;
+    grid-column: auto;
+  }
+
+  .highlight-row {
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .header {
+    grid-template-columns: 1fr;   /* 1 cột */
+    text-align: center;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .header-left,
+  .header-right {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .header-right {
+    align-self: center;
+  }
+
+  .header-center h1 {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .header-center h2 {
+    font-size: 14px;
+  }
+
+  .header-center p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .footer {
+    grid-template-columns: 1fr;  /* 1 cột */
+    text-align: center;
+    gap: 14px;
+  }
+
+  .footer-box {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+  }
+
+  .footer-box:last-child {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .highlight-row {
+    flex-direction: row;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .highlight-card {
+    min-width: 140px;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+
+  .highlight-row::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .highlight-row::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .header {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  /* Logo + avatar về trái */
+  .header-left {
+    align-items: flex-start;
+  }
+
+  .logo.big {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logo.small {
+    width: 45px;
+    height: 45px;
+  }
+
+  .user-name {
+    text-align: left;
+    font-size: 13px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .main-section.center {
+    max-width: 100%;
+  }
+
+  .highlight-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 cột */
+    gap: 16px;
+    justify-items: center;
+  }
+
+  .highlight-card {
+    width: 100%;
+  }
+}
+
+/* ===== FIX ẢNH CARD BÀI GIẢNG ===== */
+.course-card .card-img {
+  height: 180px;              /* 👈 tăng rõ ràng */
+  object-fit: cover;
+  flex-shrink: 0;             /* 👈 không bị ép */
+}
+
+/* ===== FIX CARD AUTO HEIGHT ===== */
+.course-card {
+  display: flex;
+  flex-direction: column;
+  height: auto;               /* 👈 cho phép giãn */
+}
+
+.course-card .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;                    /* 👈 body giãn */
+}
+
+/* ===== FIX TIÊU ĐỀ DÀI ===== */
+.course-card strong {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;           /* 👈 QUAN TRỌNG */
+  text-align: center;
+
+  word-break: break-word;     /* 👈 chữ dài tự xuống dòng */
+  white-space: normal;
+}
+
+.course-card {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+.course-card .card-body {
+  flex: 1;
+}
+
+.course-card strong {
+  line-height: 1.4;
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* ======================================================
+   FIX TRIỆT ĐỂ: KHÔNG CẮT ẢNH CARD BÀI GIẢNG
+   ====================================================== */
+
+/* ÉP TẤT CẢ card-img về cùng hành vi */
+.course-card img,
+.course-card .card-img,
+.card img.card-img {
+  height: auto !important;        /* ❌ bỏ mọi height cứng */
+  max-height: none !important;
+
+  width: 100%;
+  object-fit: contain !important; /* ❌ DIỆT cover */
+  background: #f4f6f8;
+
+  display: block;
+}
+
+/* Giữ tỷ lệ đẹp, card tự cao */
+.course-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.course-card .card-body {
+  flex: 1;
+}
+
+/* =====================================================
+   FIX: CARD TỰ GIÃN KHI TIÊU ĐỀ DÀI (KHÔNG BỊ CẮT)
+   ===================================================== */
+
+/* Card KHÔNG khóa chiều cao */
+.card,
+.course-card {
+  height: auto !important;
+  min-height: unset !important;
+  max-height: none !important;
+  overflow: visible !important;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Body được phép giãn */
+.card-body {
+  flex: 1 1 auto;
+  overflow: visible !important;
+}
+
+/* TIÊU ĐỀ: cho xuống dòng thoải mái */
+.card strong,
+.course-card strong {
+  display: block;
+  font-size: 15px;
+  line-height: 1.45;          /* 👈 rất quan trọng */
+  white-space: normal !important;
+  word-break: break-word;
+  overflow: visible;
+}
+
+/* Link luôn nằm đáy, không đè chữ */
+.course-card .course-link {
+  margin-top: auto;
+}

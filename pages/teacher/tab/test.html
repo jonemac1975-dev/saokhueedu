@@ -1,0 +1,41 @@
+<h2>📘 CẬP NHẬT ĐỀ TEST</h2>
+
+<div class="kt-form">
+
+  <div class="row">
+    <label>Mã đề (01 – 50)</label>
+    <input id="test_made" type="text" placeholder="VD: 01">
+  </div>
+
+  <div class="kt-row">
+<label<b>Dán nội dung từ Word vào đây :  </label>
+</div>
+    <div
+      id="test_noidung"
+      class="editor"
+      contenteditable="true"
+      placeholder="Dán nội dung Word vào đây..."
+    ></div>
+    <small>• Đáp án có dấu <b>*</b> cuối câu là đáp án đúng</small>
+  </div>
+
+  <div class="actions">
+    <button id="btnAdd">➕ Thêm</button>
+    <button id="btnSave">💾 Lưu</button>
+  </div>
+</div>
+
+<hr>
+
+<h3>📋 Danh sách đề test</h3>
+
+<table class="kt-table">
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>Mã đề</th>
+      <th>Hành động</th>
+    </tr>
+  </thead>
+  <tbody id="test_list"></tbody>
+</table>

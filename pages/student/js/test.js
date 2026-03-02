@@ -1,0 +1,309 @@
+import { readData, writeData } from "../../../scripts/services/firebaseService.js";
+
+let student;
+let teacherId;
+let dapAnDungMap = {};
+let deDangChon = null;
+let thoiGian = 30 * 60; // 30 phút
+let timerInterval;
+
+/* ===================== INIT ===================== */
+export async function init() {
+
+  student = JSON.parse(localStorage.getItem("studentLogin") || "null");
+  teacherId = localStorage.getItem("selectedTeacher");
+console.log("TeacherId:", teacherId); // 👈 thêm dòng này
+  if (!student || !teacherId) {
+    alert("Thiếu thông tin học viên / giáo viên");
+    return;
+  }
+
+  document.getElementById("testId").innerText = student.id;
+  document.getElementById("testName").innerText = student.ho_ten;
+
+  await loadDanhSachDe();
+  startTimer();
+
+  document.getElementById("btnSubmitTest")
+    .addEventListener("click", nopBai);
+}
+
+/* ===================== LOAD GRID ĐỀ ===================== */
+async function loadDanhSachDe() {
+
+  const grid = document.getElementById("testGrid");
+  grid.innerHTML = "";
+
+  const data = await readData(`teacher/${teacherId}/test`);
+  if (!data) return;
+
+  // 🔥 LẤY DANH SÁCH ĐÃ LÀM
+  const daLam =
+    await readData(`users/students/${student.id}/test`) || {};
+
+  Object.entries(data).forEach(([id, item]) => {
+
+    const btn = document.createElement("button");
+    btn.innerText = item.made || "??";
+    btn.className = "test-btn";
+
+    // Nếu chưa có nội dung → disable
+    if (!item.noidung) {
+      btn.disabled = true;
+    }
+
+    // Nếu đã làm → đánh dấu
+    if (daLam[id]) {
+      btn.classList.add("da-lam");
+    }
+
+    btn.onclick = () =>
+      loadDe(id, item.noidung, daLam[id] || null);
+
+    grid.appendChild(btn);
+  });
+}
+
+/* ===================== LOAD ĐỀ ===================== */
+function loadDe(id, html, duLieuDaLam = null) {
+
+  deDangChon = id;
+
+  // 1. render trước
+  renderTracNghiem(
+    html,
+    !!duLieuDaLam,
+    duLieuDaLam?.traLoi || {}
+  );
+
+  // 2. nếu đã làm → hiển thị kết quả
+  if (duLieuDaLam) {
+
+    setTimeout(() => {
+      hienKetQuaTest(duLieuDaLam);
+    }, 100);
+
+    document.getElementById("btnSubmitTest").disabled = true;
+
+  } else {
+    document.getElementById("btnSubmitTest").disabled = false;
+  }
+}
+
+/* ===================== RENDER ===================== */
+function renderTracNghiem(html, isDaLam = false, traLoiCu = {}) {
+
+  const container = document.getElementById("testNoiDung");
+  container.innerHTML = "";
+  dapAnDungMap = {};
+
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = html;
+
+  const paragraphs = tempDiv.querySelectorAll("p");
+
+  let cauSo = 0;
+  let cauDiv = null;
+  let daGapCauHoi = false;
+
+  paragraphs.forEach(p => {
+
+    const line = p.innerText.trim();
+    if (!line) return;
+
+    if (!/^Câu\s*\d+/i.test(line) && !daGapCauHoi) {
+      container.innerHTML += `<p>${line}</p>`;
+      return;
+    }
+
+    if (/^Câu\s*\d+/i.test(line)) {
+      daGapCauHoi = true;
+      cauSo++;
+
+      cauDiv = document.createElement("div");
+      cauDiv.className = "cau";
+      cauDiv.id = `cau${cauSo}`;
+      cauDiv.innerHTML = `<b>${line}</b>`;
+      container.appendChild(cauDiv);
+      return;
+    }
+
+    if (/^[A-D]\./.test(line) && cauDiv) {
+
+      const dapAn = line[0];
+      const isDung = line.includes("*");
+
+      if (isDung) dapAnDungMap[cauSo] = dapAn;
+
+      const text = line.replace("*", "").trim();
+
+      const label = document.createElement("label");
+
+      const input = document.createElement("input");
+      input.type = "radio";
+      input.name = `cau${cauSo}`;
+      input.value = dapAn;
+
+      if (isDaLam) input.disabled = true;
+
+      if (traLoiCu[cauSo] === dapAn) {
+        input.checked = true;
+      }
+
+      label.appendChild(input);
+      label.append(" " + text);
+
+      cauDiv.appendChild(label);
+    }
+  });
+}
+
+/* ===================== NỘP BÀI ===================== */
+async function nopBai() {
+
+  if (!deDangChon) {
+    alert("Chưa chọn đề");
+    return;
+  }
+
+  let dung = 0;
+  const tong = Object.keys(dapAnDungMap).length;
+  const traLoi = {};
+
+  Object.entries(dapAnDungMap).forEach(([cau, dapAn]) => {
+
+    const checked = document.querySelector(
+      `input[name="cau${cau}"]:checked`
+    );
+
+    if (checked) {
+      traLoi[cau] = checked.value;
+      if (checked.value === dapAn) dung++;
+    }
+  });
+
+  const diem = Math.round((dung / tong) * 10);
+
+  document.getElementById("testDung").innerText = `${dung}/${tong}`;
+  document.getElementById("testDiem").innerText = diem;
+
+  await writeData(
+  `users/students/${student.id}/test/${deDangChon}`,
+  {
+    giao_vien: teacherId,
+    made: deDangChon,
+    dung,
+    tong,
+    diem,
+    traLoi,   // 🔥 nên thêm dòng này
+    ngay: new Date().toISOString()
+  }
+);
+
+  alert("Hoàn thành bài test!");
+}
+
+/* ==========HIỂN THỊ KẾT QUẢ=============== */
+function hienKetQuaTest(data) {
+
+  // ===== HEADER =====
+  document.getElementById("testDung")
+    .innerText = `${data.dung}/${data.tong}`;
+
+  document.getElementById("testDiem")
+    .innerText = data.diem;
+
+  const traLoi = data.traLoi || {};
+
+  let cauSaiList = [];
+  let firstSai = null;
+
+  Object.keys(dapAnDungMap).forEach(cau => {
+
+    const dapAn = dapAnDungMap[cau];
+    const chon = traLoi[cau];
+
+    const cauDiv = document.getElementById(`cau${cau}`);
+    const radios =
+      document.querySelectorAll(`input[name="cau${cau}"]`);
+
+    radios.forEach(radio => {
+
+      radio.disabled = true;
+
+      const label = radio.closest("label");
+
+      // ĐÁP ÁN ĐÚNG
+      if (radio.value === dapAn) {
+        label.classList.add("dung");
+        label.innerHTML +=
+          `<span class="answer-icon icon-dung">✔</span>`;
+      }
+
+      // ĐÁP ÁN CHỌN SAI
+      if (chon &&
+          chon !== dapAn &&
+          radio.value === chon) {
+
+        label.classList.add("sai");
+        label.innerHTML +=
+          `<span class="answer-icon icon-sai">✖</span>`;
+      }
+
+      if (radio.value === chon) {
+        radio.checked = true;
+      }
+    });
+
+    if (chon !== dapAn) {
+      cauSaiList.push(cau);
+
+      if (!firstSai) {
+        firstSai = cauDiv;
+      }
+    }
+  });
+
+  // ===== THỐNG KÊ =====
+  if (cauSaiList.length > 0) {
+
+    const summary = document.createElement("div");
+    summary.className = "kt-summary";
+    summary.innerHTML =
+      `❌ Bạn sai câu: ${cauSaiList.join(", ")}`;
+
+    document
+      .getElementById("testNoiDung")
+      .prepend(summary);
+
+    // cuộn tới câu sai đầu tiên
+    setTimeout(() => {
+      firstSai.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    }, 400);
+  }
+}
+/* ===================== TIMER ===================== */
+function startTimer() {
+
+  const el = document.getElementById("testTimer");
+
+  timerInterval = setInterval(() => {
+
+    const minutes = Math.floor(thoiGian / 60);
+    const seconds = thoiGian % 60;
+
+    el.innerText =
+      `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+
+    thoiGian--;
+
+    if (thoiGian < 0) {
+      clearInterval(timerInterval);
+      nopBai();
+    }
+
+  }, 1000);
+}
