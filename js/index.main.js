@@ -146,23 +146,23 @@ function bindCourseLinks() {
       const html = decodeURIComponent(a.dataset.html || "");
       if (!html) return;
 
-      const main = document.getElementById("mainContent") 
-                || document.querySelector(".content");
+      const grid = document.getElementById("mainGrid");
+      const content = document.getElementById("mainContent");
 
-      if (!main) return;
+      // 👉 chuyển view
+      grid.style.display = "none";
+      content.style.display = "block";
 
-      const originalContent = main.innerHTML; // lưu lại
-
-      main.innerHTML = `
+      content.innerHTML = `
         <div class="lesson-content">
-          <button id="btnBack" class="back-btn">← Quay lại</button>
+          <button id="btnBack">← Quay lại</button>
           <div class="lesson-html">${html}</div>
         </div>
       `;
 
       document.getElementById("btnBack").onclick = () => {
-        main.innerHTML = originalContent;
-        bindCourseLinks(); // bind lại sự kiện
+        content.style.display = "none";
+        grid.style.display = "block";
       };
     };
   });

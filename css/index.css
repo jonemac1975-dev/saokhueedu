@@ -1130,9 +1130,9 @@ body.ready{
 }
 
 .lesson-content{
-  display: flex;
-  justify-content: center;
-
+  display: block;
+  width: 100%;
+  padding: 0;
   min-height: calc(130vh - 120px);  /* 🔥 chỉ đảm bảo tối thiểu */
 
 }
@@ -1155,4 +1155,25 @@ body.ready{
   background-size: cover;
   background-position: center;
   z-index: -1;       /* 🔥 đẩy xuống dưới */
+}
+
+.lesson-html body {
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+
+.lesson-html div {
+  width: 100% !important;
+}
+
+.lesson-content {
+  width: 100%;
+  padding: 0;
+}
+
+.lesson-content iframe {
+  width: 100%;
+  height: 90vh;
+  border: none;
+  display: block;
 }

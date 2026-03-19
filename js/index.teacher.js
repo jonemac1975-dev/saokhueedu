@@ -57,6 +57,7 @@ function loadMenu(elementId, data, type) {
   });
 }
 
+
 function loadLesson(item) {
 
   const main = document.getElementById("main");
