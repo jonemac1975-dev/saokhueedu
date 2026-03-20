@@ -140,6 +140,7 @@ async function loadDanhSachBaiKiemTra() {
   if (!lopId || !kyThiId) return;
 
   const data = await readData(`teacher/${teacherId}/kiemtra`);
+console.log("DATA KIEMTRA:", data);
   if (!data) return;
 
   Object.entries(data).forEach(([id, kt]) => {
@@ -246,8 +247,8 @@ function renderTracNghiem(html, isDaLam = false, traLoiCu = {}) {
   const tempDiv = document.createElement("div");
   tempDiv.innerHTML = html;
 
-  const paragraphs = tempDiv.querySelectorAll("p");
-
+//  const paragraphs = tempDiv.querySelectorAll("div, p");
+    const paragraphs = tempDiv.querySelectorAll("div, p, br");
   let cauSo = 0;
   let cauDiv = null;
 let daGapCauHoi = false;

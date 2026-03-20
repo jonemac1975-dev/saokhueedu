@@ -238,14 +238,23 @@ async function loadStudentTab(htmlPath, jsPath) {
   const html = await fetch(htmlPath).then(r => r.text());
   main.innerHTML = html;
 
-  // 2️⃣ ĐỢI DOM GẮN XONG
+  // 2️⃣ ĐỢI DOM
   await new Promise(r => requestAnimationFrame(r));
 
-  // 3️⃣ Import JS & gọi init
+  // 3️⃣ Import JS (🔥 chống cache)
   if (jsPath) {
-    const mod = await import(jsPath.startsWith("/") ? jsPath : "/" + jsPath);
+    const fullPath = (jsPath.startsWith("/") ? jsPath : "/" + jsPath)
+      + "?v=" + Date.now(); // 👈 QUAN TRỌNG
+
+    const mod = await import(fullPath);
+
+    console.log("MODULE:", mod);
+
     if (mod.init) {
-      await mod.init(); // 🔥🔥🔥 PHẢI Ở SAU HTML
+      console.log("🔥 GỌI INIT");
+      await mod.init();
+    } else {
+      console.warn("❌ Không có init()");
     }
   }
 }
