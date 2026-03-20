@@ -8,8 +8,8 @@ window.register = async function () {
   const r = repass.value;
   const msg = document.getElementById("msg");
 
-  if (!u || !p) return msg.innerText = "Thiếu thông tin";
-  if (p !== r) return msg.innerText = "Mật khẩu không khớp";
+  if (!u || !p) return msg.innerText = "Thiếu tên đăng nhập";
+  if (p !== r) return msg.innerText = "Mật khẩu không đúng";
 
   try {
     const id = await registerUser("teachers", u, p);
@@ -47,7 +47,7 @@ window.login = async function () {
     localStorage.setItem("teacher_login", JSON.stringify({
   id: user.id,
   ho_ten: profile.ho_ten || "",
-  avatar: profile.avatar.startsWith("data:")
+  avatar: profile.avatar?.startsWith("data:")
            ? profile.avatar
            : "data:image/jpeg;base64," + profile.avatar
 }));

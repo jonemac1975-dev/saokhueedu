@@ -8,8 +8,8 @@ window.register = async function () {
   const r = repass.value;
   const msg = document.getElementById("msg");
 
-  if (!u || !p) return msg.innerText = "Thiếu thông tin";
-  if (p !== r) return msg.innerText = "Mật khẩu không khớp";
+  if (!u || !p) return msg.innerText = "Thiếu tên đăng nhập";
+  if (p !== r) return msg.innerText = "Mật khẩu không đúng";
 
   try {
     const id = await registerUser("students", u, p);
@@ -24,7 +24,10 @@ window.register = async function () {
     window.location = "hosohocvien.html";
 
   } catch (e) {
-    msg.innerText = e;
+console.error("LOGIN ERROR:", e); // 👈 THÊM DÒNG NÀY
+    	
+	msg.innerText = e;
+	msg.style.display = "block";
   }
 };
 
@@ -62,6 +65,9 @@ window.login = async function () {
     window.location = "../../index.html";
 
   } catch (e) {
-    msg.innerText = e;
+console.error("LOGIN ERROR:", e); // 👈 THÊM DÒNG NÀY
+	
+	msg.innerText = e;
+	msg.style.display = "block";
   }
 };

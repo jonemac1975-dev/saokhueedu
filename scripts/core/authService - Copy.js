@@ -11,10 +11,6 @@ export async function registerUser(role, username, password) {
   const basePath = `users/${role}`;
   const users = await readData(basePath) || {};
 
-// 🔥 LOG 1: xem đang login cái gì
-  console.log("LOGIN:", role, username);
-  console.log("USERS:", users);
-
   // dò trùng username
   for (const id in users) {
     if (users[id].auth?.username === username) {
@@ -44,39 +40,18 @@ export async function loginUser(role, username, password) {
   const basePath = `users/${role}`;
   const users = await readData(basePath);
 
-  if (!users || Object.keys(users).length === 0) {
-  throw "Chưa đăng ký";
-}
+  if (!users) throw "Không có dữ liệu";
 
-  let foundUser = null;
-  let foundId = null;
+  const pass_hash = await hashPass(password);
 
-  // 🔍 Tìm username trước
   for (const id in users) {
     const u = users[id];
-    if (u.auth?.username === username) {
-      foundUser = u;
-      foundId = id;
-      break;
+    if (u.auth?.username === username && u.auth.pass_hash === pass_hash) {
+      return { id, role };
     }
   }
 
- // 🔥 LOG 2: xem có tìm thấy không
-  console.log("FOUND USER:", foundUser);
-
-  // ❌ Không có username
-  if (!foundUser) {
-    throw "Chưa đăng ký";
-  }
-
-  // 🔐 Check mật khẩu
-  const pass_hash = await hashPass(password);
-
-  if (foundUser.auth.pass_hash !== pass_hash) {
-    throw "Sai mật khẩu";
-  }
-
-  return { id: foundId, role };
+  throw "Sai tên đăng nhập hoặc mật khẩu";
 }
 
 /* ===== ĐỔI PASS ===== */
