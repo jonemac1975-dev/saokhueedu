@@ -172,8 +172,8 @@ body {
 
 /* ===== BUTTON ===== */
 .sidebar button {
-  width: 100%;
-  margin: 5px 0;
+  width: 47%;
+  margin: 2px 0;
   padding: 7px;
   border: none;
   border-radius: 6px;
@@ -204,12 +204,12 @@ body {
 
 /* ===== MENU ===== */
 .menu {
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .menu-title {
   font-weight: 600;
-  margin-top: 8px;
+  margin-top: 2px;
   cursor: pointer;
   color: #1a237e;
 }
@@ -1208,4 +1208,49 @@ body.ready{
   height: 90vh;
   border: none;
   display: block;
+}
+
+
+
+
+
+
+.student-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.student-actions button {
+  width: 40%;
+  margin: 0; /* 🔥 bỏ margin gây xuống dòng */
+}
+
+
+
+.avatar-student {
+  width: 50px !important;
+  height: 50px !important;
+
+  border-radius: 50%;
+  overflow: hidden;     /* 🔥 cắt phần dư */
+  margin: 10px auto;
+
+  display: block;
+}
+
+.avatar-student img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;   /* 🔥 không bị méo + không lệch */
+  display: block;
+}
+
+.name {
+  margin-top: 8px;
+  text-align: center;
+}
+
+.avatar-student {
+  background-size: cover;
+  background-position: center;
 }

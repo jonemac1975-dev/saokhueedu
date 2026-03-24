@@ -38,21 +38,60 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   /* ==============================
-     ĐÃ LOGIN
-  ============================== */
-  if (btnRegister) btnRegister.style.display = "none";
-  if (btnLogin) btnLogin.style.display = "none";
+   ĐÃ LOGIN
+============================== */
+if (btnRegister) btnRegister.style.display = "none";
+if (btnLogin) btnLogin.style.display = "none";
 
+try {
+  // 👉 load profile mới nhất từ Firebase
+  const profile = await readData(`users/students/${studentData.id}/profile`);
+
+  const avatar = profile?.avatar || "./store/default-avatar.png";
+  const hoTen  = profile?.ho_ten || "Học viên";
+
+  // 👉 render avatar
   if (avatarBox) {
     avatarBox.innerHTML = `
-      <img src="${studentData.avatar || './store/default-avatar.png'}"
-           style="width:100px;height:100px;border-radius:50%;object-fit:cover;">
+      <img src="${avatar}"
+           style="
+             width:80px;
+             height:80px;
+             border-radius:50%;
+             object-fit:cover;
+             border:2px solid #e3e8f0;
+           ">
+    `;
+  }
+
+  // 👉 render tên
+  if (nameBox) {
+    nameBox.textContent = hoTen;
+  }
+
+  // 👉 update lại localStorage cho đồng bộ (optional nhưng nên có)
+  const updatedLogin = {
+    ...studentData,
+    avatar: avatar,
+    ho_ten: hoTen
+  };
+  localStorage.setItem("studentLogin", JSON.stringify(updatedLogin));
+
+} catch (err) {
+  console.error("Lỗi load profile:", err);
+
+  // fallback nếu lỗi Firebase
+  if (avatarBox) {
+    avatarBox.innerHTML = `
+      <img src="./store/default-avatar.png"
+           style="width:80px;height:80px;border-radius:50%;">
     `;
   }
 
   if (nameBox) {
-    nameBox.textContent = studentData.ho_ten || "Học viên";
+    nameBox.textContent = "Học viên";
   }
+}
 
 /* ==============================
    NÚT KIỂM TRA (HỌC VIÊN)
