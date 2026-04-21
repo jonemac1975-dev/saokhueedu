@@ -174,3 +174,40 @@ window.addEventListener("load", () => {
 });
 });
 
+
+
+window.toggleSidebar = function(role) {
+  const teacher = document.querySelector(".sidebar.teacher");
+  const student = document.querySelector(".sidebar.student");
+
+  const target = role === "teacher" ? teacher : student;
+  const other  = role === "teacher" ? student : teacher;
+
+  const isOpen = target.classList.contains("show");
+
+  // luôn đóng cái kia
+  other.classList.remove("show");
+
+  // toggle cái được chọn
+  if (isOpen) {
+    target.classList.remove("show");
+  } else {
+    target.classList.add("show");
+  }
+};
+
+
+document.addEventListener("click", (e) => {
+  const teacher = document.querySelector(".sidebar.teacher");
+  const student = document.querySelector(".sidebar.student");
+
+  const isMenu = e.target.closest(".top-menu");
+  const isSidebar = e.target.closest(".sidebar");
+
+  if (!isMenu && !isSidebar) {
+    teacher.classList.remove("show");
+    student.classList.remove("show");
+  }
+});
+
+

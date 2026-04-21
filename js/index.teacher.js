@@ -59,7 +59,7 @@ function loadMenu(elementId, data, type) {
 
 
 function loadLesson(item) {
-
+  
   const main = document.getElementById("main");
   const mediaBox = document.getElementById("teacherMedia");
   const playerBox = document.getElementById("teacherPlayer");
@@ -146,7 +146,7 @@ if (item.media && mediaBox) {
 /* ================= LOAD KIỂM TRA ================= */
 
 function loadExam(item) {
-
+ 
   const main = document.getElementById("main");
 
   const grid = document.getElementById("mainGrid");

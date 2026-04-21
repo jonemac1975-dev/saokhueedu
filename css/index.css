@@ -15,7 +15,7 @@ body {
 
 .header {
   display: grid;
-  grid-template-columns: 220px 1fr 220px;
+  grid-template-columns:  220px 1fr 220px;
   align-items: center;
   padding: 15px 20px;
   background: #3f6fc1;
@@ -127,7 +127,7 @@ body {
 /* ================= MAIN LAYOUT ================= */
 .layout {
   display: grid;
-  grid-template-columns: 240px minmax(0,1fr) 250px;
+  grid-template-columns: 240px minmax(0,8fr) 240px;
   gap: 20px;
   padding: 20px;
   align-items: start;
@@ -1176,18 +1176,7 @@ body.ready{
 }
 
 
-#mainBg{
-  position: absolute;   /* 🔥 QUAN TRỌNG */
-  top: 10px;        /* = chiều cao header */
-  bottom: 0;
 
-  left: 0%;
-  right: 0%;
-
-  background-size: cover;
-  background-position: center;
-  z-index: -1;       /* 🔥 đẩy xuống dưới */
-}
 
 .lesson-html body {
   max-width: 100% !important;
@@ -1253,4 +1242,124 @@ body.ready{
 .avatar-student {
   background-size: cover;
   background-position: center;
+}
+
+
+
+/===chỉnh 2 nút menu====/
+
+.sidebar {
+  position: fixed !important;
+  top: 80px; /* 👈 chỉnh đúng chiều cao header của bạn */
+  bottom: 0;
+  width: 280px;
+  background: #fff;
+  z-index: 2000;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+}
+
+/* Giáo viên - bên trái */
+.sidebar.teacher {
+  left: 0;
+  transform: translateX(-100%);
+}
+
+/* Học viên - bên phải */
+.sidebar.student {
+  right: 0;
+  transform: translateX(100%);
+}
+
+/* Khi mở */
+.sidebar.show {
+  transform: translateX(0);
+}
+
+
+/* ===== TOP MENU BUTTONS ===== */
+.top-menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Cho 2 nút nằm ngang */
+.teacher-btn {
+  justify-self: end;
+}
+
+.student-btn {
+  justify-self: start;
+  margin-left: 10px;
+}
+
+/* Style nút */
+.top-menu button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #ff9800;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.top-menu button:hover {
+  background: #e68900;
+  transform: translateY(-1px);
+}
+
+/* ===== NÚT MENU 2 BÊN ===== */
+
+/* Cho header làm mốc */
+.header {
+  position: relative;
+}
+
+/* Base chung */
+.top-menu {
+  position: absolute;
+  top: 90%;            /* 👈 nằm NGAY dưới header */
+  transform: translateY(5px); /* cách nhẹ 5px cho đẹp */
+  z-index: 2500;
+}
+
+/* Giáo viên bên trái */
+.teacher-btn {
+ left: 70px;
+}
+
+/* Học viên bên phải */
+.student-btn {
+  right: 70px;
+}
+
+/* Style nút */
+.top-menu button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  background: #ff9800;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: 0.25s;
+}
+
+.top-menu button:hover {
+  background: #e68900;
+  transform: translateY(-2px);
+}
+
+
+body.lesson-mode .layout {
+  grid-template-columns: 1fr;   /* 🔥 chỉ còn main */
+  padding: 0;
+}
+
+body.lesson-mode .sidebar {
+  display: none !important;     /* 🔥 ẩn sidebar */
 }
